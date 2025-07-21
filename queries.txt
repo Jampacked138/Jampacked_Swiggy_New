@@ -1,0 +1,14 @@
+-- Step 1: Identify duplicates
+WITH duplicates AS (
+    SELECT ctid, order_id
+    FROM (
+        SELECT ctid, order_id,
+               ROW_NUMBER() OVER (PARTITION BY order_id ORDER BY ctid) as row_num
+        FROM swiggy_order_finance_metrics
+    ) sub
+    WHERE sub.row_num > 1
+)
+
+-- Step 2: Delete duplicates
+DELETE FROM swiggy_order_finance_metrics
+WHERE ctid IN (SELECT ctid FROM duplicates);

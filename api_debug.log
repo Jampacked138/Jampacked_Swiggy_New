@@ -1,0 +1,24 @@
+2024-09-27 08:45:51,620 INFO:Fetching orders for filter: wrong_items
+2024-09-27 08:45:51,623 DEBUG:Starting new HTTPS connection (1): rms.swiggy.com:443
+2024-09-27 08:45:52,461 DEBUG:https://rms.swiggy.com:443 "GET /orders/v1/history?filterReq=wrong_items&limit=100&offset=0&ordered_time__gte=2024-08-20&ordered_time__lte=2024-09-26&restaurant_id=765524 HTTP/1.1" 200 None
+2024-09-27 08:45:52,464 INFO:Fetching orders for filter: unsafe_packaging
+2024-09-27 08:45:52,465 DEBUG:Starting new HTTPS connection (1): rms.swiggy.com:443
+2024-09-27 08:45:53,972 DEBUG:https://rms.swiggy.com:443 "GET /orders/v1/history?filterReq=unsafe_packaging&limit=100&offset=0&ordered_time__gte=2024-08-20&ordered_time__lte=2024-09-26&restaurant_id=765524 HTTP/1.1" 200 None
+2024-09-27 08:45:54,037 INFO:Fetching orders for filter: missing_items
+2024-09-27 08:45:54,039 DEBUG:Starting new HTTPS connection (1): rms.swiggy.com:443
+2024-09-27 08:45:55,140 DEBUG:https://rms.swiggy.com:443 "GET /orders/v1/history?filterReq=missing_items&limit=100&offset=0&ordered_time__gte=2024-08-20&ordered_time__lte=2024-09-26&restaurant_id=765524 HTTP/1.1" 200 None
+2024-09-27 08:45:55,142 INFO:Fetching orders for filter: quality_issues
+2024-09-27 08:45:55,144 DEBUG:Starting new HTTPS connection (1): rms.swiggy.com:443
+2024-09-27 08:45:56,141 DEBUG:https://rms.swiggy.com:443 "GET /orders/v1/history?filterReq=quality_issues&limit=100&offset=0&ordered_time__gte=2024-08-20&ordered_time__lte=2024-09-26&restaurant_id=765524 HTTP/1.1" 200 None
+2024-09-27 08:45:56,144 INFO:Fetching orders for filter: packaging_issues
+2024-09-27 08:45:56,145 DEBUG:Starting new HTTPS connection (1): rms.swiggy.com:443
+2024-09-27 08:45:56,501 DEBUG:https://rms.swiggy.com:443 "GET /orders/v1/history?filterReq=packaging_issues&limit=100&offset=0&ordered_time__gte=2024-08-20&ordered_time__lte=2024-09-26&restaurant_id=765524 HTTP/1.1" 200 None
+2024-09-27 08:45:56,503 INFO:Fetching orders for filter: quantity_issues
+2024-09-27 08:45:56,505 DEBUG:Starting new HTTPS connection (1): rms.swiggy.com:443
+2024-09-27 08:45:57,034 DEBUG:https://rms.swiggy.com:443 "GET /orders/v1/history?filterReq=quantity_issues&limit=100&offset=0&ordered_time__gte=2024-08-20&ordered_time__lte=2024-09-26&restaurant_id=765524 HTTP/1.1" 200 None
+2024-09-27 08:45:57,036 INFO:Orders for wrong_items: 7
+2024-09-27 08:45:57,036 INFO:Orders for unsafe_packaging: 100
+2024-09-27 08:45:57,036 INFO:Orders for missing_items: 13
+2024-09-27 08:45:57,036 INFO:Orders for quality_issues: 11
+2024-09-27 08:45:57,036 INFO:Orders for packaging_issues: 0
+2024-09-27 08:45:57,036 INFO:Orders for quantity_issues: 2

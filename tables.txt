@@ -1,0 +1,255 @@
+delete from swiggy_order_metrics;
+delete from swiggy_orders_month_track;
+delete from swiggy_order_item_metrics;
+delete from swiggy_operations_metrics;
+delete from swiggy_restaurant_reviews;
+delete from swiggy_order_finance_metrics;
+delete from swiggy_restaurant_metrics;
+delete from swiggy_restaurant_metrics_logs;
+delete from swiggy_restaurant_timings;
+delete from swiggy_ad_metrics;
+delete from swiggy_discount_metrics; 
+delete from swiggy_ads_month_track;
+delete from swiggy_discount_month_track;
+
+drop table swiggy_order_metrics;
+drop table swiggy_orders_month_track;
+drop table swiggy_order_item_metrics;
+drop table swiggy_operations_metrics;
+drop table swiggy_restaurant_reviews;
+drop table swiggy_order_finance_metrics;
+drop table swiggy_restaurant_metrics;
+drop table swiggy_restaurant_metrics_logs;
+drop table swiggy_restaurant_timings;
+drop table swiggy_ad_metrics;
+drop table swiggy_ads_month_track;
+drop table swiggy_discount_metrics; 
+drop table swiggy_discount_month_track;
+
+SELECT restaurant_id, COUNT(*) AS record_count
+FROM swiggy_order_finance_metrics
+GROUP BY restaurant_id;
+
+
+CREATE TABLE swiggy_order_metrics (
+    order_id BIGINT,
+    restaurant_id BIGINT,
+    created_at timestamp,
+    updated_at timestamp,
+    order_placed_at timestamp,
+    order_accepted_at timestamp,
+    order_delivered_at timestamp,
+    kpt FLOAT,
+    order_status TEXT,
+    bill_amount FLOAT,
+    service_charge FLOAT,
+    delivery_charges FLOAT,
+    packaging_charges FLOAT,
+    taxes FLOAT,
+    restaurant_trade_discount FLOAT,
+    restaurant_coupon_discount_share FLOAT,
+    cancelled_reason TEXT,
+    food_prepared TEXT,
+    edited_status TEXT,
+    food_ready_signal TEXT,
+    wrong_items INTEGER,
+    unsafe_packaging INTEGER,
+    missing_items INTEGER,
+    quality_issues INTEGER,
+    packaging_issues INTEGER,
+    quantity_issues INTEGER
+);  
+
+create table swiggy_orders_month_track (
+	restaurant_id BIGINT,
+    date DATE,
+);
+
+CREATE TABLE swiggy_order_item_metrics (
+    id SERIAL not null PRIMARY KEY,
+    order_id BIGINT,
+    restaurant_id BIGINT,
+    created_at TIMESTAMP,
+    updated_at TIMESTAMP,
+    item_id INTEGER,
+    item_name TEXT,
+    quantity INTEGER,
+    packaging_charges FLOAT,
+    subtotal INTEGER,
+    total FLOAT,
+    variants JSONB,
+    addons JSONB
+);
+
+CREATE TABLE swiggy_operations_metrics (
+    id SERIAL not null PRIMARY KEY,
+    operations_date DATE,
+    restaurant_id BIGINT,
+    created_at TIMESTAMP,
+    updated_at TIMESTAMP,
+    food_ready_not_pressed INTEGER,
+    food_ready_correct INTEGER,
+    food_ready_pressed_early INTEGER,
+    wrong_item FLOAT,
+    missing_item FLOAT,
+    quality_quantity_issues FLOAT,
+    package_spillage FLOAT,
+    confirmation_time FLOAT,
+    accept_orders FLOAT,
+    edit_orders FLOAT,
+    cancel_orders FLOAT,
+    orders_confirmed_in_3_min INTEGER,
+    cancel_item_not_available INTEGER,
+    cancel_restaurant_closed INTEGER,
+    cancel_not_accepting_orders INTEGER
+);
+
+CREATE TABLE swiggy_restaurant_reviews (
+    id SERIAL not null PRIMARY KEY,
+    restaurant_id BIGINT,
+    created_at TIMESTAMP,
+    updated_at TIMESTAMP,
+    review_date DATE,
+    customer_name TEXT,
+    customer_type TEXT,
+    area_name TEXT,
+    orders INTEGER,
+    all_orders_value FLOAT,
+    complaints INTEGER,
+    order_id BIGINT,
+    rating INTEGER,
+    review_text TEXT
+);
+
+CREATE TABLE swiggy_order_finance_metrics (
+    order_id BIGINT,
+    restaurant_id BIGINT,
+    order_date TIMESTAMP,
+    created_at TIMESTAMP,
+    updated_at TIMESTAMP,
+    order_status TEXT,
+    order_category TEXT,
+    cancelled_by TEXT,
+    item_total FLOAT,
+    packing_and_service_charges FLOAT,
+    merchant_discount FLOAT,
+    net_amount_without_taxes FLOAT,
+    gst_liability_of_merchant FLOAT,
+    customer_payable_net_after_tax_and_discount FLOAT,
+    platform_fee_chargeable_on FLOAT,
+    platform_fee_percent FLOAT,
+    platform_fee FLOAT,
+    discount_on_platform_fee FLOAT,
+    collection_charges FLOAT,
+    access_charges FLOAT,
+    merchant_cancellation_charges FLOAT,
+    call_centre_service_fee FLOAT,
+    swiggy_service_fee_without_tax FLOAT,
+    tax_on_swiggy_service_fee FLOAT,
+    merchant_share_of_cancelled_orders FLOAT,
+    merchant_sponsored_delivery_fee FLOAT,
+    refund_on_disputed_orders FLOAT,
+    disputed_orders_remarks TEXT,
+    order_level_adjustments FLOAT,
+    net_payable_amount FLOAT,
+    net_payable_amount_after_tcs_tds FLOAT,
+    mfr_pressed TEXT,
+    cancellation_policy_applied TEXT,
+    coupon_code_sourced TEXT,
+    discount_campaign_id TEXT,
+    is_replicated TEXT,
+    base_order_id FLOAT,
+    mrp_items FLOAT,
+    order_payment_type TEXT,
+    cancellation_time TEXT,
+    pick_up_status TEXT,
+    coupon_code_applied_by_customer TEXT,
+    long_distance_applicable TEXT,
+    last_mile_distance FLOAT,
+    long_distance_subscription_fees FLOAT,
+    discount_on_long_distance_subscription_fees FLOAT,
+    net_long_distance_subscription_fees FLOAT,
+);
+
+CREATE TABLE swiggy_restaurant_metrics (
+    restaurant_id BIGINT PRIMARY KEY,
+    created_at TIMESTAMP,
+    updated_at TIMESTAMP,
+    on_swiggy_since TEXT,
+    area_name TEXT,
+    city TEXT,
+    fssai BIGINT,
+    avg_rating FLOAT,
+    lifetime_votes BIGINT
+);
+
+CREATE TABLE swiggy_restaurant_metrics_logs (
+    restaurant_id BIGINT,
+    created_at TIMESTAMP,
+    updated_at TIMESTAMP,
+    on_swiggy_since TEXT,
+    area_name TEXT,
+    city TEXT,
+    fssai BIGINT,
+    avg_rating FLOAT,
+    lifetime_votes BIGINT
+);
+
+CREATE TABLE swiggy_restaurant_timings (
+    restaurant_id BIGINT,
+    created_at TIMESTAMP,
+    updated_at TIMESTAMP,
+    day_of_the_week TEXT,
+    slot_no INTEGER,
+    start_time TEXT,
+    end_time TEXT,
+    status BOOLEAN
+);
+
+CREATE TABLE swiggy_ad_metrics (
+    id SERIAL not null PRIMARY KEY,
+    ad_date DATE,
+    created_at TIMESTAMP,
+    updated_at TIMESTAMP,
+    restaurant_id BIGINT,
+    ad_spend FLOAT,
+    impressions FLOAT,
+    menu_visits FLOAT,
+    orders FLOAT,
+    sales FLOAT,
+    nu_orders FLOAT,
+    breakfast_orders FLOAT,
+    dinner_orders FLOAT,
+    ln1_orders FLOAT,
+    ln2_orders FLOAT,
+    lunch_orders FLOAT,
+    snacks_orders FLOAT
+);
+
+CREATE TABLE swiggy_discount_metrics (
+    id SERIAL not null PRIMARY KEY,
+    business_date DATE,
+    created_at TIMESTAMP,
+    updated_at TIMESTAMP,
+    restaurant_id BIGINT,
+    orders INTEGER,
+    revenue FLOAT,
+    spends FLOAT,
+    aov FLOAT,
+    new_user_orders INTEGER,
+    repeat_user_orders INTEGER,
+    dormant_user_orders INTEGER
+);
+
+CREATE TABLE swiggy_ads_month_track (
+    restaurant_id BIGINT,
+    date DATE
+);
+
+CREATE TABLE swiggy_discount_month_track (
+    restaurant_id BIGINT,
+    date DATE
+);
+
+ALTER TABLE swiggy_order_finance_metrics
+ADD CONSTRAINT unique_order_finance_constraint UNIQUE (order_id, restaurant_id);

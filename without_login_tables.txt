@@ -1,0 +1,50 @@
+drop table swiggy_local_top_dishes;
+drop table /;
+drop table swiggy_local_competition;
+
+delete from swiggy_local_top_dishes;
+delete from swiggy_local_top_brands;
+delete from swiggy_local_competition;
+
+CREATE TABLE swiggy_local_top_dishes (
+    id SERIAL PRIMARY KEY,
+    area_search_for TEXT,
+    city TEXT,
+    created_at timestamp,
+    updated_at timestamp,
+    dish_or_cuisine TEXT,
+    sequence_number INTEGER
+);
+
+CREATE TABLE swiggy_local_top_brands (
+    id SERIAL PRIMARY KEY,
+    area_search_for TEXT,
+    city TEXT,
+    created_at timestamp,
+    updated_at timestamp,
+    brand_name TEXT,
+    sequence_number INTEGER,
+    rating FLOAT, 
+    delivery_time TEXT,
+    cuisines TEXT[], 
+    area_name TEXT
+);
+
+CREATE TABLE swiggy_local_competition (
+    id SERIAL PRIMARY KEY,
+    area_search_for TEXT,
+    created_at TIMESTAMP,
+    updated_at TIMESTAMP,
+    sequence_number INTEGER,
+    competition_name TEXT,
+    cost_for_two INTEGER,
+    delivery_time TEXT,
+    cuisines TEXT[],
+    area_name TEXT,
+    city TEXT,
+    delivery_rating FLOAT,
+    delivery_votes_bucket BIGINT,
+    promos JSONB,
+    dish_details JSONB,
+    fssai TEXT
+);

@@ -1,0 +1,15 @@
+__pycache__
+config.ini
+logs.log
+*.zip
+*.exe
+*.log
+*.ipynb
+logs
+cookies
+data
+downloads
+screenshots
+cookies
+app_ads_backup.py
+app_beta.py
